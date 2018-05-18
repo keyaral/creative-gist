@@ -1,4 +1,4 @@
-class Larp << ApplicationRecord
+class Larp < ApplicationRecord
   has_many :characters
 
 end
