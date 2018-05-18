@@ -14,7 +14,6 @@ class LarpsController < ApplicationController
 
   def create
     @larp = Larp.new(larp_params)
-
     if @larp.save
       redirect_to larps_path, notice: "Larp was created successfully"
     else
@@ -27,10 +26,14 @@ class LarpsController < ApplicationController
   end
 
   def update
-    if @larp.update(larp_param)
+    if @larp.update(larp_params)
       redirect_to larps_path. notice "Larp was updated successfully"
     else
       render :edit
     end
+  end
+
+  def larp_params
+    params.require(:larp).permit(:name)
   end
 end

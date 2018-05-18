@@ -1,4 +1,5 @@
 <%= form_for @larp do |f| %>
-<h5> Name of Larp </h5>
-  <%= f.text_field :name %>
+<h5> Title: <%= f.text_field :name %> </h5>
+
+  <p> <%= f.submit %> </p>
 <% end %>
