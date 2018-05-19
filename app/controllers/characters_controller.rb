@@ -27,6 +27,8 @@ class CharactersController < ApplicationController
   end
 
   def update
+    @character = Character.find(:params[:id])
+
     if @character.update(character_params)
       redirect_to characters_path, notice: "Character was updated successfully"
     else
