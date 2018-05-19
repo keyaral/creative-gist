@@ -1,0 +1,6 @@
+<%= form_for @larp_registration do |f| %>
+<h5> Larp <%= f.select :larp_id, options_from_collection_for_select(Larp.all, "id", "name") %> </h5>
+<h5> User <%= f.select :user_id, options_from_collection_for_select(User.all, "id", "email") %> </h5>
+<h5> Status <%= f.select :registration_state, ["Interested", "Registered", "Pending","Assigned"]%> </h5>
+<p> <%= f.submit %> </p>
+<% end %>
