@@ -1,6 +1,6 @@
 <%= form_for @character do |f| %>
   <h5> Larp <%= f.select :larp_id, options_from_collection_for_select(Larp.all, "id", "name") %> </h5>
   <h5> Name: <%= f.text_field :name %> </h5>
-  <h5> Descriptions <%= f.text_area :descriptions %> </h5>
+  <h5> Descriptions <%= f.text_area :description %> </h5>
   <p> <%= f.submit %> </p>
 <% end %>
