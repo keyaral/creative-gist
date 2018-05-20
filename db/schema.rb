@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180519060355) do
+ActiveRecord::Schema.define(version: 20180520090055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abilities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
@@ -22,6 +29,13 @@ ActiveRecord::Schema.define(version: 20180519060355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["larp_id"], name: "index_characters_on_larp_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "larp_registrations", force: :cascade do |t|
@@ -38,6 +52,18 @@ ActiveRecord::Schema.define(version: 20180519060355) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mechanics", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "mechanicable_type"
+    t.bigint "mechanicable_id"
+    t.string "description"
+    t.string "duration"
+    t.string "reuse"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mechanicable_type", "mechanicable_id"], name: "index_mechanics_on_mechanicable_type_and_mechanicable_id"
   end
 
   create_table "users", force: :cascade do |t|
