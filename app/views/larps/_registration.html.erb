@@ -1,0 +1,10 @@
+<% if larp.registered_users.include?(current_user.id) %>
+  <p> You have registered already </p>
+<% else %>
+  <%= form_for larp_registration do |f| %>
+  <%= f.hidden_field :larp_id, value: larp.id %>
+  <%= f.hidden_field :registration_state, value: "Interested" %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <p> <%= f.submit  "Register interest"%> </p>
+  <% end %>
+<% end %>

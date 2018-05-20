@@ -1,5 +1,6 @@
 class LarpRegistrationsController < ApplicationController
 
+
   def index
     @larp_registrations = LarpRegistration.all
   end
