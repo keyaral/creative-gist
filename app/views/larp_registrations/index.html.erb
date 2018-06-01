@@ -1,0 +1,4 @@
+<h3> Larp Registrations </h3>
+<% @larp_registrations.each do |element| %>
+<p> User: <%= element.user_id %> Larp: <%= element.larp_id %> State: <%= element.registration_state %> </p>
+<% end %>

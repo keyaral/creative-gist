@@ -10,18 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518025755) do
+ActiveRecord::Schema.define(version: 20180520090055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "abilities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
-    t.string "descriptions", null: false
+    t.string "description", null: false
     t.bigint "larp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["larp_id"], name: "index_characters_on_larp_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "larp_registrations", force: :cascade do |t|
+    t.bigint "larp_id"
+    t.bigint "user_id"
+    t.string "registration_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["larp_id"], name: "index_larp_registrations_on_larp_id"
+    t.index ["user_id"], name: "index_larp_registrations_on_user_id"
   end
 
   create_table "larps", force: :cascade do |t|
@@ -30,5 +54,36 @@ ActiveRecord::Schema.define(version: 20180518025755) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mechanics", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "mechanicable_type"
+    t.bigint "mechanicable_id"
+    t.string "description"
+    t.string "duration"
+    t.string "reuse"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mechanicable_type", "mechanicable_id"], name: "index_mechanics_on_mechanicable_type_and_mechanicable_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "characters", "larps"
+  add_foreign_key "larp_registrations", "larps"
+  add_foreign_key "larp_registrations", "users"
 end

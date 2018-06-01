@@ -26,6 +26,8 @@ class LarpsController < ApplicationController
   end
 
   def update
+    @larp = Larp.find(params[:id])
+    
     if @larp.update(larp_params)
       redirect_to larps_path. notice "Larp was updated successfully"
     else

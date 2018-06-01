@@ -6,7 +6,7 @@ class CreateLarps < ActiveRecord::Migration[5.1]
     end
     create_table :characters do |t|
       t.string :name,              null: false
-      t.string :descriptions,       null: false
+      t.string :description,       null: false
       t.belongs_to :larp,          foreign_key: true
       t.timestamps
     end

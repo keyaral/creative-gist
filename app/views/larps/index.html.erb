@@ -1,5 +1,6 @@
 <h3> Larps </h3>
 
 <% @larps.each do |larp| %>
-  <p> Name: <%= larp.name %>
+  <p> Name: <%= larp.name %> </p>
+  <%= render partial: 'registration', locals: { larp_registration: LarpRegistration.new, larp: larp }%>
 <% end %>
